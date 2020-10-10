@@ -1,0 +1,38 @@
+- hosts: web
+  become: yes
+  tasks:
+  - name: Install Apache
+    yum:
+      name: httpd
+      state: latest
+
+  - name: Start and enable httpd
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+
+  - name: Download template
+    get_url:
+      url: https://www.free-css.com/assets/files/free-css-templates/download/page247/traveler.zip
+      dest: /var/www/html/
+      
+    
+  - name: install unzip
+    yum: 
+      name: unzip
+      state: latest
+
+  - name: unzip the file
+    unarchive:
+      src: /var/www/html/traveler.zip
+      dest: /var/www/html/
+      remote_src: yes
+
+
+- hosts: db
+  tasks:
+  - name: Install MySQl
+    yum:
+      name: mariadb-server
+      state: latest
