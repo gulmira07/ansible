@@ -1,0 +1,7 @@
+- hosts: all
+  tasks:
+  - name: Install ssh key
+    authorized_key:
+      user: ec2-user
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQciiSH119l1zDht/BrPX8MBR3QfYa+RmLWAXj9o3QmmEPDrUBl+5134vmjNKko+/WRX4Bq1i6Ylt8BGTtIH/P8bKQqoqEKDuRHS36Lr+5zZ2UUQq9DfvQnv8Ye7Fjh7E8WXAFF0RjXpNc+KAqvAGirkpsEtKKSRElj4b1SBx1Ie2yKqwYk4BcJzAaA+0LxTVTPWgETsCXGtjlSU3KO3P9FULylj0/FzVdi+p18+Ia/bFPCMQscjljELp0fOTETRZuwAKKzT6BMYmqKYrTq7na7kcy//h3OfNvbc3iB/OgIQgyY2ji+LpGI9MOfdDMwjo0q/uuK0SivWUmx4ZItNy3 ansible"
