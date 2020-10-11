@@ -1,6 +1,4 @@
-- hosts: web
-  become: yes
-  tasks:
+asks:
   - name: Install httpd
     yum:
       name: httpd
@@ -16,7 +14,7 @@
   - name: Download Templates
     get_url:
       url: https://www.free-css.com/assets/files/free-css-templates/download/page259/digitco.zip
-      dest: /var/www/html/
+      dest: /var/www/html
       
     
   - name: unzip
@@ -31,18 +29,10 @@
      remote_src: yes
 
   - name:  move files 
-    shell: mv /var/www/html/digitco/* /var/www/html/
-    ignore_errors: yes
+    shell: mv /var/www/html/digitco.zip/*  /var/www/html/
 
-  # Disable SELinux
   - selinux:
-      state: disabled
-    ignore_errors: yes
-  
-  - name: 
-    shell: chown -R apache:apache /var/www/html/
+      state:  disabled   
 
-  - name:
-    service:
-      name: httpd
-      state: restarted
+    
+
