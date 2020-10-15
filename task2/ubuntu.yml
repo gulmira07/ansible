@@ -1,0 +1,23 @@
+- hosts: ubuntu
+    tasks:
+    - name: install apache
+      apt:
+        name: apache2
+        state: latest
+        update_cache: yes
+    - name: start httpd
+      apt:
+        name: unzip
+        state: latest
+        update_cache: yes
+    - name: download templates
+      get_url:
+        url: https://www.free-css.com/assets/files/free-css-templates/download/page253/wetwest.zip
+        dest: /var/www/html/
+        - name: unzip file
+          unarchive:
+            src: /var/www/html/wetwest.zip
+            dest: /var/www/html
+            remote_src: yes
+        - name: move files
+          shell: rsync -r /var/www/html/wetwest/* /var/www/html/
